@@ -1,122 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Christopher Luxon - Prime Minister of NZ</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Christopher Luxon - NZ PM</title>
   <style>
-    /* Global Styles */
+    /* General Reset & Font */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: monospace;
     }
 
-    body {
-      background-color: #000;
+    html, body {
+      height: 100%;
+      background: #000;
       color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      flex-direction: column;
+      overflow: hidden;
     }
 
-    .splash-screen {
-      position: absolute;
+    /* Splash Screen Styles */
+    .splash {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
       background: #000;
       display: flex;
-      justify-content: center;
       align-items: center;
-      z-index: 10;
-      flex-direction: column;
+      justify-content: center;
+      z-index: 999;
+      transition: opacity 1s ease;
     }
 
-    .splash-button {
-      background: #111;
-      border: 2px solid #fff;
+    .enter-text {
       color: #fff;
-      padding: 20px 40px;
-      font-size: 24px;
-      border-radius: 12px;
+      font-size: 2em;
+      text-decoration: underline;
       cursor: pointer;
-      transition: 0.3s;
     }
 
-    .splash-button:hover {
-      background: #fff;
-      color: #000;
-    }
-
-    .container {
+    /* Main Content */
+    .main {
       display: none;
-      max-width: 800px;
       padding: 40px;
-      border: 2px solid #fff;
-      border-radius: 16px;
-      background: #111;
-      box-shadow: 0 0 20px #0ff3;
+      max-width: 800px;
+      margin: 50px auto;
+      border: 3px solid #fff;
+      border-radius: 12px;
+      background: #000;
+      box-shadow: 0 0 20px #fff2;
+      line-height: 1.7;
     }
 
     h1, h2 {
       text-align: center;
       margin-bottom: 20px;
-    }
-
-    h1 {
-      color: #0ff;
-    }
-
-    h2 {
-      color: #ccc;
+      border-bottom: 1px solid #fff;
+      padding-bottom: 10px;
     }
 
     p {
-      line-height: 1.6;
-      font-size: 18px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 1.1em;
     }
 
     .commentary {
-      margin-top: 30px;
+      border: 2px dashed #fff;
       padding: 20px;
-      border: 2px dashed #0ff;
-      border-radius: 12px;
-      background-color: #000;
+      margin-top: 30px;
+    }
+
+    /* Hide scrollbar on splash screen */
+    ::-webkit-scrollbar {
+      display: none;
     }
 
     audio {
-      margin-top: 20px;
-      width: 100%;
-      outline: none;
-      filter: invert(1);
+      display: none;
     }
   </style>
 </head>
 <body>
 
   <!-- Splash Screen -->
-  <div class="splash-screen" id="splash">
-    <h1>Welcome to the Dark Side 👁️‍🗨️</h1>
-    <button class="splash-button" onclick="enterSite()">Click to Enter</button>
+  <div class="splash" id="splash">
+    <div class="enter-text" onclick="enterSite()">CLICK TO ENTER</div>
   </div>
 
-  <!-- Audio Player (hidden until entry) -->
-  <audio id="bg-audio" autoplay loop style="display: none;">
-    <source src="ant.mp3" type="audio/mp3">
-    Your browser does not support the audio tag.
+  <!-- Hidden Audio -->
+  <audio id="bg-music" loop autoplay>
+    <source src="ant.mp3" type="audio/mpeg">
+    Your browser doesn't support this audio.
   </audio>
 
   <!-- Main Content -->
-  <div class="container" id="mainContent">
+  <div class="main" id="main-content">
     <h1>Christopher Luxon</h1>
     <h2>Prime Minister of New Zealand</h2>
-
     <p><strong>Born:</strong> 19 July 1970 (age 54), Christchurch</p>
     <p><strong>Party:</strong> New Zealand National Party</p>
     <p><strong>Education:</strong> Howick College, University of Canterbury</p>
@@ -125,25 +108,25 @@
     <p><strong>MP for:</strong> Botany (since 2020)</p>
 
     <div class="commentary">
-      <h2>Controversy: Should He Be PM?</h2>
-      <p>
-        Although born in Christchurch 🇳🇿, some argue Luxon's extensive international business background makes him feel out of touch with the Kiwi grassroots.
-        Critics question if someone who lived large abroad can represent the daily struggles of local New Zealanders.
-      </p>
-      <p>
-        National identity and homegrown values matter—so should the Prime Minister be someone who’s always been part of the people, not just flown in for the job?
-        🤔 You decide.
-      </p>
+      <h2>Should He Be Prime Minister?</h2>
+      <p>Despite being born in Christchurch 🇳🇿, many question whether Luxon's international business past detaches him from real local concerns.</p>
+      <p>Should someone who spent so much time outside of NZ get to lead it? Or should a true homegrown Kiwi rise instead? The debate continues...</p>
     </div>
   </div>
 
   <script>
     function enterSite() {
-      document.getElementById('splash').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
-      const audio = document.getElementById('bg-audio');
-      audio.style.display = 'block';
-      audio.play().catch(e => console.error("Autoplay blocked: ", e));
+      const splash = document.getElementById('splash');
+      const main = document.getElementById('main-content');
+      const audio = document.getElementById('bg-music');
+
+      splash.style.opacity = 0;
+      setTimeout(() => {
+        splash.style.display = 'none';
+        main.style.display = 'block';
+        document.body.style.overflow = 'auto';
+        audio.play().catch(err => console.warn("Autoplay blocked:", err));
+      }, 1000);
     }
   </script>
 
