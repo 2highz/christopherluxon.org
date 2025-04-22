@@ -3,121 +3,134 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Christopher Luxon - NZ PM</title>
+  <title>Christopher Luxon - ⚠️ Not My PM ⚠️</title>
   <style>
-    /* General Reset & Font */
+    /* 🧼 Basic Reset & Fonts */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: monospace;
+      font-family: 'Courier New', monospace;
     }
 
     html, body {
       height: 100%;
-      background: #000;
+      background-color: #000;
       color: #fff;
       overflow: hidden;
     }
 
-    /* Splash Screen Styles */
+    /* 💀 Splash Screen */
     .splash {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      background: #000;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #000;
       z-index: 999;
       transition: opacity 1s ease;
     }
 
-    .enter-text {
-      color: #fff;
-      font-size: 2em;
-      text-decoration: underline;
+    .click-text {
+      font-size: 2.5em;
       cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s;
     }
 
-    /* Main Content */
+    .click-text:hover {
+      transform: scale(1.1);
+    }
+
+    /* 📃 Main Content */
     .main {
       display: none;
-      padding: 40px;
-      max-width: 800px;
-      margin: 50px auto;
-      border: 3px solid #fff;
-      border-radius: 12px;
+      padding: 50px 20px;
+      max-width: 850px;
+      margin: auto;
       background: #000;
-      box-shadow: 0 0 20px #fff2;
-      line-height: 1.7;
+      border: 2px solid #fff;
+      border-radius: 16px;
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+      line-height: 1.8;
     }
 
-    h1, h2 {
-      text-align: center;
+    h1 {
+      font-size: 2.5em;
       margin-bottom: 20px;
+      text-align: center;
       border-bottom: 1px solid #fff;
       padding-bottom: 10px;
     }
 
-    p {
-      margin-bottom: 12px;
-      font-size: 1.1em;
+    .fact {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px dashed #fff;
     }
 
     .commentary {
-      border: 2px dashed #fff;
-      padding: 20px;
+      padding: 25px;
+      border: 2px solid #fff;
+      font-style: italic;
       margin-top: 30px;
     }
 
-    /* Hide scrollbar on splash screen */
-    ::-webkit-scrollbar {
+    audio {
       display: none;
     }
 
-    audio {
+    ::-webkit-scrollbar {
       display: none;
     }
   </style>
 </head>
 <body>
 
-  <!-- Splash Screen -->
+  <!-- ⛔ Splash Screen -->
   <div class="splash" id="splash">
-    <div class="enter-text" onclick="enterSite()">CLICK TO ENTER</div>
+    <div class="click-text" onclick="enter()">CLICK TO EXPOSE</div>
   </div>
 
-  <!-- Hidden Audio -->
+  <!-- 🐜 BGM -->
   <audio id="bg-music" loop autoplay>
     <source src="ant.mp3" type="audio/mpeg">
-    Your browser doesn't support this audio.
   </audio>
 
-  <!-- Main Content -->
-  <div class="main" id="main-content">
-    <h1>Christopher Luxon</h1>
-    <h2>Prime Minister of New Zealand</h2>
-    <p><strong>Born:</strong> 19 July 1970 (age 54), Christchurch</p>
-    <p><strong>Party:</strong> New Zealand National Party</p>
-    <p><strong>Education:</strong> Howick College, University of Canterbury</p>
-    <p><strong>Office:</strong> Prime Minister of New Zealand (since 2023)</p>
-    <p><strong>Previous Office:</strong> Leader of the Opposition (2021–2023)</p>
-    <p><strong>MP for:</strong> Botany (since 2020)</p>
+  <!-- 💀 Main Roast Content -->
+  <div class="main" id="main">
+    <h1>Christopher Luxon: Not My Prime Minister</h1>
+
+    <div class="fact">🔎 <strong>Not Truly Kiwi?</strong>  
+      Born in Christchurch but spent a chunk of his career overseas—how in touch is he *really* with Aotearoa?</div>
+
+    <div class="fact">💼 <strong>Corporate Bot Energy:</strong>  
+      Former airline CEO turned PM. Imagine your boss's boss suddenly running the country like it's a PowerPoint.</div>
+
+    <div class="fact">📉 <strong>Opposition Leader to “Oops-osition”:</strong>  
+      Before becoming PM, he led the opposition with more flops than a Netflix reboot.</div>
+
+    <div class="fact">🔇 <strong>Silent on Real Issues:</strong>  
+      When things get real, he gets real quiet. Silence louder than his campaign ads.</div>
+
+    <div class="fact">🌍 <strong>Outsourced Aura:</strong>  
+      Business ties, global travel, corporate deals — feels more like a consultant than a leader.</div>
 
     <div class="commentary">
-      <h2>Should He Be Prime Minister?</h2>
-      <p>Despite being born in Christchurch 🇳🇿, many question whether Luxon's international business past detaches him from real local concerns.</p>
-      <p>Should someone who spent so much time outside of NZ get to lead it? Or should a true homegrown Kiwi rise instead? The debate continues...</p>
+      New Zealand deserves better than a suit with a script.  
+      Leadership isn’t about looking busy on TV — it’s about listening, leading, and living the same reality as your people.  
+      Luxon? He’s got CEO brain.  
+      🇳🇿 This ain’t a boardroom. This is Aotearoa.
     </div>
   </div>
 
   <script>
-    function enterSite() {
+    function enter() {
       const splash = document.getElementById('splash');
-      const main = document.getElementById('main-content');
+      const main = document.getElementById('main');
       const audio = document.getElementById('bg-music');
 
       splash.style.opacity = 0;
@@ -125,7 +138,7 @@
         splash.style.display = 'none';
         main.style.display = 'block';
         document.body.style.overflow = 'auto';
-        audio.play().catch(err => console.warn("Autoplay blocked:", err));
+        audio.play().catch(err => console.warn("autoplay error:", err));
       }, 1000);
     }
   </script>
