@@ -3,34 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latte Loves Hijacked</title>
+    <title>⚠️ Not Luxon | GG.HAZE</title>
     <style>
-        body, html {
+        /* Reset & Body Setup */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
             height: 100%;
-            width: 100%;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
             background-color: #000;
             color: #fff;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
-            cursor: pointer;
             text-align: center;
+            user-select: none;
+            cursor: url('custom-cursor.png'), auto;
+        }
+
+        /* Centered Layout */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         #clickable {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: opacity 1s ease-in-out;
             font-size: 20px;
             font-weight: 300;
             letter-spacing: 2px;
             text-transform: uppercase;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 2px dashed white;
+            padding: 1em 2em;
+            border-radius: 8px;
         }
 
         .fade-out {
@@ -50,14 +62,14 @@
         }
 
         .image-container img {
-            width: 400px; /* Adjust for proper size */
+            width: 400px;
             animation: swing 6s infinite ease-in-out;
             transform-origin: top center;
         }
 
         .text-section {
             position: absolute;
-            bottom: 40%;
+            bottom: 20%;
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
@@ -67,48 +79,86 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             line-height: 2;
+            max-width: 90%;
         }
 
+        .text-section p,
+        .text-section a {
+            margin: 0.3em 0;
+        }
+
+        .text-section a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px dotted white;
+            padding: 2px;
+        }
+
+        .disclaimer {
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            opacity: 0.6;
+            text-align: center;
+            width: 80%;
+        }
+
+        /* Swing animation */
         @keyframes swing {
             0% { transform: rotate(-10deg); }
             50% { transform: rotate(10deg); }
             100% { transform: rotate(-10deg); }
         }
 
+        /* Responsive adjustments */
         @media (max-width: 600px) {
             .image-container img {
-                width: 80%; /* Adjust for mobile size */
+                width: 80%;
             }
 
             .text-section {
                 font-size: 12px;
             }
+
+            #clickable {
+                font-size: 16px;
+                padding: 0.8em 1.6em;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="clickable">
-        Click anywhere to enter
-    </div>
+    <div id="clickable">Click anywhere to enter</div>
+
     <div class="image-container">
-        <img src="gg.haze.png" alt="Haze Image">
+        <img src="gg.haze.png" alt="Haze Ghost">
     </div>
+
     <div class="text-section">
         <p>Latte</p>
         <p>Frap</p>
-        <p>snor</p>
+        <p>Snor</p>
         <p>Uni</p>
         <p>gg.haze</p>
-        <a href="/leak.txt" download style="color: white; text-decoration: none;">This Is Not A Real Luxon Website</a>
-        <p><a href="https://discord.gg/vk6DDBrEC9" style="color: white; text-decoration: none;">DISCORD</a></p>
+        <a href="/leak.txt" download>Download Popeyes IP Data Leak</a>
+        <p><a href="https://discord.gg/vk6DDBrEC9">Join Discord</a></p>
     </div>
+
+    <div class="disclaimer">
+        <p>⚠️ This is NOT a real Luxon website. This page is for educational and entertainment purposes only. Any resemblance to real services is purely satirical.</p>
+    </div>
+
     <script>
-        document.body.addEventListener('click', function() {
-            let clickable = document.getElementById('clickable');
-            let imageContainer = document.querySelector('.image-container');
-            let textSection = document.querySelector('.text-section');
+        // Click interaction to trigger animation and audio
+        const clickToEnter = () => {
+            const clickable = document.getElementById('clickable');
+            const imageContainer = document.querySelector('.image-container');
+            const textSection = document.querySelector('.text-section');
 
             clickable.classList.add('fade-out');
+
             setTimeout(() => {
                 clickable.style.display = 'none';
                 imageContainer.style.opacity = '1';
@@ -117,11 +167,34 @@
                     textSection.style.opacity = '1';
                 }, 1500);
             }, 1000);
-        let audio = new Audio('ant.mp3');
-        audio.loop = true;
-        audio.play();
-        
-        document.body.removeEventListener('click', arguments.callee);
+
+            // 🎵 Let the vile vibes play forever
+            const audio = new Audio('ant.mp3');
+            audio.loop = true;
+            audio.volume = 0.75;
+            audio.play();
+
+            document.body.removeEventListener('click', clickToEnter);
+        };
+
+        document.body.addEventListener('click', clickToEnter);
+
+        // 🔒 Disable right-click and text selection
+        document.body.oncontextmenu = () => false;
+        document.body.onselectstart = () => false;
+
+        // Responsive tweak on resize
+        window.addEventListener('resize', () => {
+            const image = document.querySelector('.image-container img');
+            const text = document.querySelector('.text-section');
+            if (window.innerWidth < 600) {
+                image.style.width = '80%';
+                text.style.fontSize = '12px';
+            } else {
+                image.style.width = '400px';
+                text.style.fontSize = '14px';
+            }
+        });
     </script>
 </body>
 </html>
