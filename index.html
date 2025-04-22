@@ -1,56 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click to Play</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background-color: black;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            font-size: 36px;
-            text-align: center;
-            cursor: pointer;
-        }
-        #message {
-            display: block;
-        }
-        #audio {
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christopher Luxon - Prime Minister of NZ</title>
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    .splash-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      flex-direction: column;
+    }
+
+    .splash-button {
+      background: #111;
+      border: 2px solid #fff;
+      color: #fff;
+      padding: 20px 40px;
+      font-size: 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .splash-button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .container {
+      display: none;
+      max-width: 800px;
+      padding: 40px;
+      border: 2px solid #fff;
+      border-radius: 16px;
+      background: #111;
+      box-shadow: 0 0 20px #0ff3;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #0ff;
+    }
+
+    h2 {
+      color: #ccc;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .commentary {
+      margin-top: 30px;
+      padding: 20px;
+      border: 2px dashed #0ff;
+      border-radius: 12px;
+      background-color: #000;
+    }
+
+    audio {
+      margin-top: 20px;
+      width: 100%;
+      outline: none;
+      filter: invert(1);
+    }
+  </style>
 </head>
 <body>
 
-    <div id="message">
-        1<br>
-        2<br>
-        3
+  <!-- Splash Screen -->
+  <div class="splash-screen" id="splash">
+    <h1>Welcome to the Dark Side 👁️‍🗨️</h1>
+    <button class="splash-button" onclick="enterSite()">Click to Enter</button>
+  </div>
+
+  <!-- Audio Player (hidden until entry) -->
+  <audio id="bg-audio" autoplay loop style="display: none;">
+    <source src="ant.mp3" type="audio/mp3">
+    Your browser does not support the audio tag.
+  </audio>
+
+  <!-- Main Content -->
+  <div class="container" id="mainContent">
+    <h1>Christopher Luxon</h1>
+    <h2>Prime Minister of New Zealand</h2>
+
+    <p><strong>Born:</strong> 19 July 1970 (age 54), Christchurch</p>
+    <p><strong>Party:</strong> New Zealand National Party</p>
+    <p><strong>Education:</strong> Howick College, University of Canterbury</p>
+    <p><strong>Office:</strong> Prime Minister of New Zealand (since 2023)</p>
+    <p><strong>Previous Office:</strong> Leader of the Opposition (2021–2023)</p>
+    <p><strong>MP for:</strong> Botany (since 2020)</p>
+
+    <div class="commentary">
+      <h2>Controversy: Should He Be PM?</h2>
+      <p>
+        Although born in Christchurch 🇳🇿, some argue Luxon's extensive international business background makes him feel out of touch with the Kiwi grassroots.
+        Critics question if someone who lived large abroad can represent the daily struggles of local New Zealanders.
+      </p>
+      <p>
+        National identity and homegrown values matter—so should the Prime Minister be someone who’s always been part of the people, not just flown in for the job?
+        🤔 You decide.
+      </p>
     </div>
+  </div>
 
-    <audio id="audio">
-        <source src="ant.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
-
-    <script>
-        document.body.addEventListener('click', function() {
-            var audio = document.getElementById('audio');
-            var message = document.getElementById('message');
-
-            // Play the audio when the page is clicked
-            audio.play();
-
-            // Hide the text after the first click
-            message.style.display = 'none';
-        });
-    </script>
+  <script>
+    function enterSite() {
+      document.getElementById('splash').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+      const audio = document.getElementById('bg-audio');
+      audio.style.display = 'block';
+      audio.play().catch(e => console.error("Autoplay blocked: ", e));
+    }
+  </script>
 
 </body>
 </html>
