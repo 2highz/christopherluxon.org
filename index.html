@@ -2,195 +2,236 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>⚠️ Not Luxon | Latte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support Latte • Donations & Help</title>
   <style>
-    /* Reset */
-    *, *::before, *::after {
+    /* 🧼 RESET + BASE STYLES */
+    * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
     html, body {
       height: 100%;
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      color: #fff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
-      text-align: center;
-      user-select: none;
-      cursor: url('custom-cursor.png'), auto;
+      background: #0c0c0c;
+      color: #fff;
+      scroll-behavior: smooth;
     }
 
-    body {
+    h1, h2 {
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 1.5px;
+      padding: 0.5em;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #ff4d4d, #ffa64d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    section {
+      padding: 2rem;
+      margin: 1rem auto;
+      max-width: 800px;
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(255, 77, 77, 0.1);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .donate-btn {
+      display: inline-block;
+      background: #262626;
+      color: #fff;
+      border: 2px solid #ff4d4d;
+      border-radius: 8px;
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .donate-btn:hover {
+      background: #ff4d4d;
+      color: #0c0c0c;
+      transform: scale(1.05);
+    }
+
+    form {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+      gap: 1rem;
     }
 
-    .click-text {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 20px;
-      font-weight: 300;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 1;
-      transition: opacity 1s ease-in-out;
-      pointer-events: none;
+    label {
+      font-weight: bold;
     }
 
-    .fade-out {
-      opacity: 0;
-    }
-
-    .image-container {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
+    input, select, textarea {
       width: 100%;
-      text-align: center;
-      opacity: 0;
-      transition: opacity 2s ease-in-out;
-    }
-
-    .image-container img {
-      width: 400px;
-      animation: swing 6s infinite ease-in-out;
-      transform-origin: top center;
-    }
-
-    .text-section {
-      position: absolute;
-      bottom: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: opacity 2s ease-in-out;
-      font-size: 14px;
-      font-weight: 200;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      line-height: 2;
-      max-width: 90%;
-    }
-
-    .text-section p,
-    .text-section a {
-      margin: 0.3em 0;
-    }
-
-    .text-section a {
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #666;
+      background-color: #222;
       color: white;
-      text-decoration: none;
-      border-bottom: 1px dotted white;
-      padding: 2px;
     }
 
-    .disclaimer {
-      position: absolute;
-      bottom: 5%;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 12px;
-      opacity: 0.6;
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border: 1px solid #ff4d4d;
+      background: #111;
+    }
+
+    button[type="submit"] {
+      background: #ff4d4d;
+      border: none;
+      padding: 12px;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background: #e63939;
+    }
+
+    /* ✨ RESPONSIVE */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      section {
+        padding: 1.5rem;
+      }
+    }
+
+    .success-msg, .error-msg {
+      margin-top: 1rem;
+      padding: 1rem;
       text-align: center;
-      width: 80%;
+      border-radius: 8px;
     }
 
-    @keyframes swing {
-      0% { transform: rotate(-10deg); }
-      50% { transform: rotate(10deg); }
-      100% { transform: rotate(-10deg); }
+    .success-msg {
+      background: #1d402d;
+      color: #8ff0a4;
     }
 
-    @media (max-width: 600px) {
-      .image-container img {
-        width: 80%;
-      }
+    .error-msg {
+      background: #3a1c1c;
+      color: #ff8f8f;
+    }
 
-      .text-section {
-        font-size: 12px;
-      }
-
-      .click-text {
-        font-size: 16px;
-      }
+    .bordered-title {
+      border-bottom: 2px dashed #ff4d4d;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <!-- Click Text -->
-  <div class="click-text" id="click-text">
-    Click anywhere to enter
-  </div>
 
-  <!-- Image -->
-  <div class="image-container">
-    <img src="gg-haze.png" alt="Haze Image" />
-  </div>
+  <!-- 🔥 Header -->
+  <header>
+    <h1>Support Latte</h1>
+  </header>
 
-  <!-- Text Content -->
-  <div class="text-section">
-    <p>Latte</p>
-    <p>Frap</p>
-    <p>Snor</p>
-    <p>Uni</p>
-    <p>gg.haze</p>
-    <p><a href="https://discord.gg/vk6DDBrEC9">Join Discord</a></p>
-  </div>
+  <!-- 💸 Donation Section -->
+  <section>
+    <h2 class="bordered-title">Donate & Keep Us Going 🚀</h2>
+    <p style="text-align:center;">Your support helps us build more insane tools, content, and features! 💖</p>
+    <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+      <a href="https://www.paypal.com/paypalme/LatteMM?locale.x=en_NZ" target="_blank">
+        <button class="donate-btn">Donate via PayPal</button>
+      </a>
+      <a href="https://buy.stripe.com/test_eVa4h7esCbMG2t26oo" target="_blank">
+        <button class="donate-btn">Donate via Stripe</button>
+      </a>
+    </div>
+  </section>
 
-  <!-- Disclaimer -->
-  <div class="disclaimer">
-    ⚠️ This is NOT a real Luxon website. This is a parody / art project.  
-    All data shown is fictional and not affiliated with any real service.
-  </div>
+  <!-- 📩 Contact Form Section -->
+  <section>
+    <h2 class="bordered-title">Need Help? Contact Support 🛠️</h2>
+    <form class="contact-form" id="contact-form" action="https://formspree.io/f/xpwdzwbz" method="POST">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="issue-type">What Are You Contacting About?</label>
+      <select id="issue-type" name="issue-type" required>
+        <option value="">-- Please Select --</option>
+        <option value="Bug Report">Bug Report 🐞</option>
+        <option value="Feature Request">Feature Request 🚀</option>
+        <option value="Account Issue">Account Issue 👤</option>
+        <option value="Billing">Billing 💳</option>
+        <option value="Other">Other 🤔</option>
+      </select>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <button type="submit">Send Message</button>
+
+      <!-- Message Containers -->
+      <div class="success-msg" id="success-msg" style="display: none;">✅ Message sent successfully!</div>
+      <div class="error-msg" id="error-msg" style="display: none;">❌ Something went wrong. Please try again!</div>
+    </form>
+  </section>
 
   <script>
-    const clickText = document.getElementById("click-text");
-    const imageContainer = document.querySelector(".image-container");
-    const textSection = document.querySelector(".text-section");
+    // 💥 Basic client-side error/success display
+    const form = document.getElementById('contact-form');
+    const successMsg = document.getElementById('success-msg');
+    const errorMsg = document.getElementById('error-msg');
 
-    const handleClick = () => {
-      clickText.classList.add("fade-out");
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-      setTimeout(() => {
-        clickText.style.display = "none";
-        imageContainer.style.opacity = "1";
+      const formData = new FormData(form);
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
 
-        setTimeout(() => {
-          textSection.style.opacity = "1";
-        }, 1500);
-      }, 1000);
-
-      const audio = new Audio("ant.mp3");
-      audio.loop = true;
-      audio.volume = 0.7;
-      audio.play();
-
-      document.body.removeEventListener("click", handleClick);
-    };
-
-    document.body.addEventListener("click", handleClick);
-
-    document.body.oncontextmenu = () => false;
-    document.body.onselectstart = () => false;
-
-    window.addEventListener("resize", () => {
-      const image = document.querySelector(".image-container img");
-      const text = document.querySelector(".text-section");
-      if (window.innerWidth < 600) {
-        image.style.width = "80%";
-        text.style.fontSize = "12px";
-      } else {
-        image.style.width = "400px";
-        text.style.fontSize = "14px";
+        if (response.ok) {
+          successMsg.style.display = 'block';
+          errorMsg.style.display = 'none';
+          form.reset();
+        } else {
+          throw new Error('Form submission failed.');
+        }
+      } catch (error) {
+        console.error('Form error:', error);
+        errorMsg.style.display = 'block';
+        successMsg.style.display = 'none';
       }
+    });
+  </script>
+  <script>
+    // 🎵 Play audio on screen click
+    const audio = new Audio('ant.mp3');
+    document.body.addEventListener('click', () => {
+      audio.play();
     });
   </script>
 </body>
