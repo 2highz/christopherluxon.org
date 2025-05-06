@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unblocker 9000</title>
+  <style>
+    body {
+      background-color: #0e0e0e;
+      color: #00ffae;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 1.2em;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    input {
+      width: 400px;
+      background: #1a1a1a;
+      color: white;
+      border: 2px solid #00ffae;
+    }
+
+    button {
+      background: #00ffae;
+      color: #0e0e0e;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00d29f;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔓 Web Unblocker 9000</h1>
+  <input type="text" id="urlInput" placeholder="https://example.com">
+  <button onclick="unblock()">UNBLOCK NOW 🧨</button>
+
+  <script>
+    function unblock() {
+      let url = document.getElementById('urlInput').value.trim();
+
+      if (!url.startsWith("http")) {
+        url = "https://" + url;
+      }
+
+      const encoded = encodeURIComponent(url);
+
+      // Use Google Translate proxy trick
+      const googleTranslateURL = `https://translate.google.com/translate?sl=auto&tl=en&u=${encoded}`;
+
+      // Open in new tab
+      window.open(googleTranslateURL, "_blank");
+    }
+  </script>
+</body>
+</html>
